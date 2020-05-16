@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    body{
+      background-color: rgb(199, 148, 199);
+    }
+  
+        .container{
+        background-color: rgb(228, 218, 218);
+        height: 70vw;
+        width: 70vw;
+        border-radius: 10px;
+    }
+    .message{
+        text-align:center;
+        font-style:inherit;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .form-control.ng-touched.ng-invalid{
+      border: 2px solid red;
+    }
+    </style>
+</head>
+<body>
+ <form>
+   <div class= "container">
+    <div class = "message">Please Fill And Submit The Form</div><br><br><br>
+    <strong>Fullname</strong><br>
+    <input ngModel id="fullname" name="fullname" class="form-control"
+    required minlength="4"
+     #fullname="ngModel" >
+
+<div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
+  class="alert alert-danger">
+
+<div *ngIf="fullname.errors.required">
+  *Fullame is required.
+</div>
+</div>
+
+<strong>Email</strong><br>
+    <input ngModel id="email" class="form-control"
+     required type= "email" 
+     pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      name="email" class="form-control" #email="ngModel" >
+
+     <div *ngIf = "email.errors && (email.dirty || email.touched)">
+      <div class = "alert alert-danger"*ngIf = "email.errors.required" >Email is required</div>
+      <div class = "alert alert-danger" *ngIf= "email.errors.pattern">Email must contain "@" and "domain.com"</div>
+         
+     </div>   
+     <strong>Github Link</strong><br>
+     <input ngModel id="github" name="github" class="form-control"
+     required minlength="4"
+      #github="ngModel" 
+      required minlength="4">
+ 
+ <div *ngIf="github.invalid && (github.dirty || github.touched)"
+   class="alert alert-danger">
+ 
+ <div *ngIf="github.errors.required">
+   *Github Link is required.
+ </div>
+ </div>
+ <strong>LinkedIn Profile</strong><br>
+ <input ngModel id="linkedin" name="linkedin" class="form-control"
+ 
+  #linkedin="ngModel" 
+  required minlength="4">
+
+<div *ngIf="linkedin.invalid && (linkedin.dirty || linkedin.touched)"
+class="alert alert-danger">
+
+<div *ngIf="linkedin.errors.required">
+*LinkedIn profile is required.
+</div>
+</div>
+
+<div class="form-group">
+  <label for="exampleFormControlFile1"><strong>Attach CV</strong></label>
+  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+</div>
+<strong>Cover Letter</strong><br>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+ngModel id = "cover" name = "cover" #cover = "ngModel" required minlength="4">
+
+</textarea>
+<div *ngIf="cover.invalid && (cover.dirty || cover.touched)"
+class="alert alert-danger">
+<div *ngIf="cover.errors.required">
+*Include Your Cover Letter.
+</div>
+</div><br><br>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+
+</div>
+</form>
+</body>
+</html>
