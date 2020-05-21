@@ -16,6 +16,10 @@
         width: 70vw;
         border-radius: 10px;
     }
+    button:after {
+  content: "Submitted";
+  visibility: hidden;
+}
     .message{
         text-align:center;
         font-style:inherit;
@@ -27,13 +31,13 @@
     </style>
 </head>
 <body>
- <form>
+ <form id="form" novalidate (ngSubmit)="onsubmit()"   >
    <div class= "container">
-    <div class = "message">Please Fill And Submit The Form</div><br><br><br>
-    <strong>Fullname</strong><br>
+    <div class = "message" >Please Fill And Submit The Form</div><br><br><br>
+    <strong >Fullname</strong><br>
     <input ngModel id="fullname" name="fullname" class="form-control"
     required minlength="4"
-     #fullname="ngModel" >
+     #fullname="ngModel"  >
 
 <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
   class="alert alert-danger">
@@ -43,7 +47,7 @@
 </div>
 </div>
 
-<strong>Email</strong><br>
+<strong >Email</strong><br>
     <input ngModel id="email" class="form-control"
      required type= "email" 
      pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -51,14 +55,14 @@
 
      <div *ngIf = "email.errors && (email.dirty || email.touched)">
       <div class = "alert alert-danger"*ngIf = "email.errors.required" >Email is required</div>
-      <div class = "alert alert-danger" *ngIf= "email.errors.pattern">Email must contain "@" and "domain.com"</div>
+      <div class = "alert alert-danger" *ngIf= "email.errors.pattern">*Email must contain "@" and "domain.com"</div>
          
      </div>   
-     <strong>Github Link</strong><br>
+     <strong >Github Link</strong><br>
      <input ngModel id="github" name="github" class="form-control"
      required minlength="4"
       #github="ngModel" 
-      required minlength="4">
+      required minlength="4" >
  
  <div *ngIf="github.invalid && (github.dirty || github.touched)"
    class="alert alert-danger">
@@ -97,7 +101,7 @@ class="alert alert-danger">
 </div>
 </div><br><br>
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary" (click)="changeState()"  [@changeDivSize]=currentState>Submit</button>
 
 
 </div>
