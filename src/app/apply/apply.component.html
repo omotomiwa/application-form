@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/@progress/kendo-theme-default@latest/dist/all.css" />
     <style>
     
     body{
@@ -12,14 +13,11 @@
   
         .container{
         background-color: rgb(228, 218, 218);
-        height: 70vw;
-        width: 70vw;
+        height: 85vw;
+        width: 70vnw;
         border-radius: 10px;
     }
-    button:after {
-  content: "Submitted";
-  visibility: hidden;
-}
+  
     .message{
         text-align:center;
         font-style:inherit;
@@ -28,16 +26,53 @@
     .form-control.ng-touched.ng-invalid{
       border: 2px solid red;
     }
+
+    
+/*     
+      my-app { display: block; box-sizing: border-box; padding: 30px; }
+      my-app > .k-icon.k-i-loading { font-size: 64px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .example-wrapper { min-height: 280px; align-content: flex-start; } */
+      .example-wrapper p, .example-col p { margin: 0 0 10px; }
+      .example-wrapper p:first-child, .example-col p:first-child { margin-top: 0; }
+      .example-col { display: inline-block; vertical-align: top; padding-right: 20px; padding-bottom: 20px; }
+      .example-config { margin: 0 0 20px; padding: 20px; background-color: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.08); }
+      .event-log { margin: 0; padding: 0; max-height: 100px; overflow-y: auto; list-style-type: none; border: 1px solid rgba(0,0,0,.08); background-color: #fff; }
+      .event-log li {margin: 0; padding: .3em; line-height: 1.2em; border-bottom: 1px solid rgba(0,0,0,.08); }
+      .event-log li:last-child { margin-bottom: -1px;}
+      #example{
+        
+        text-align: center;
+        display: inline-block;
+        margin: auto;
+       padding-left: 35vw;
+      }
+
+    
     </style>
+
 </head>
 <body>
- <form id="form" novalidate (ngSubmit)="onsubmit()"   >
+
+  <div id="example">
+    <div class="demo-section k-content">
+        <h4>Profile Completeness: <span id="completed">{{completeness}}</span></h4>
+        <kendo-chunkprogressbar
+            [value]="value"
+            [min]="min"
+            [max]="max"
+            [progressCssStyle]="progressStyle"
+            [emptyCssStyle]="emptyStyle"
+            [chunkCount]="chunks"></kendo-chunkprogressbar>
+    </div>
+  </div>
+ <form id="form" novalidate (ngSubmit)="onsubmit()"  #profileForm= "ngForm" >
    <div class= "container">
     <div class = "message" >Please Fill And Submit The Form</div><br><br><br>
     <strong >Fullname</strong><br>
     <input ngModel id="fullname" name="fullname" class="form-control"
     required minlength="4"
-     #fullname="ngModel"  >
+     #fullname="ngModel"  
+     [(ngModel)]="person.fullName">
 
 <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
   class="alert alert-danger">
@@ -51,7 +86,8 @@
     <input ngModel id="email" class="form-control"
      required type= "email" 
      pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-      name="email" class="form-control" #email="ngModel" >
+      name="email" class="form-control" #email="ngModel" 
+      [(ngModel)]="person.email">
 
      <div *ngIf = "email.errors && (email.dirty || email.touched)">
       <div class = "alert alert-danger"*ngIf = "email.errors.required" >Email is required</div>
@@ -62,7 +98,8 @@
      <input ngModel id="github" name="github" class="form-control"
      required minlength="4"
       #github="ngModel" 
-      required minlength="4" >
+      required minlength="4" 
+      [(ngModel)]="person.github">
  
  <div *ngIf="github.invalid && (github.dirty || github.touched)"
    class="alert alert-danger">
@@ -75,7 +112,8 @@
  <input ngModel id="linkedin" name="linkedin" class="form-control"
  
   #linkedin="ngModel" 
-  required minlength="4">
+  required minlength="4"
+  [(ngModel)]="person.linkedin">
 
 <div *ngIf="linkedin.invalid && (linkedin.dirty || linkedin.touched)"
 class="alert alert-danger">
@@ -91,7 +129,8 @@ class="alert alert-danger">
 </div>
 <strong>Cover Letter</strong><br>
 <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-ngModel id = "cover" name = "cover" #cover = "ngModel" required minlength="4">
+ngModel id = "cover" name = "cover" #cover = "ngModel" required minlength="4"
+[(ngModel)]="person.cover">
 
 </textarea>
 <div *ngIf="cover.invalid && (cover.dirty || cover.touched)"

@@ -7,6 +7,8 @@ import { ApplyComponent } from './apply/apply.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProgressBarModule
+   
+    
     
   ],
   providers: [],
