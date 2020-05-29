@@ -65,14 +65,14 @@
             [chunkCount]="chunks"></kendo-chunkprogressbar>
     </div>
   </div>
- <form id="form" novalidate (ngSubmit)="onsubmit()"  #profileForm= "ngForm" >
+ <form id="form" novalidate (ngSubmit)="onSubmit(); profileForm.reset()"  #profileForm= "ngForm" >
    <div class= "container">
     <div class = "message" >Please Fill And Submit The Form</div><br><br><br>
     <strong >Fullname</strong><br>
     <input ngModel id="fullname" name="fullname" class="form-control"
     required minlength="4"
      #fullname="ngModel"  
-     [(ngModel)]="person.fullName">
+     [(ngModel)]=" person.fullName">
 
 <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
   class="alert alert-danger">
@@ -87,7 +87,7 @@
      required type= "email" 
      pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
       name="email" class="form-control" #email="ngModel" 
-      [(ngModel)]="person.email">
+      [(ngModel)]=" person.email">
 
      <div *ngIf = "email.errors && (email.dirty || email.touched)">
       <div class = "alert alert-danger"*ngIf = "email.errors.required" >Email is required</div>
@@ -99,7 +99,7 @@
      required minlength="4"
       #github="ngModel" 
       required minlength="4" 
-      [(ngModel)]="person.github">
+      [(ngModel)]=" person.github">
  
  <div *ngIf="github.invalid && (github.dirty || github.touched)"
    class="alert alert-danger">
@@ -113,7 +113,7 @@
  
   #linkedin="ngModel" 
   required minlength="4"
-  [(ngModel)]="person.linkedin">
+  [(ngModel)]=" person.linkedin">
 
 <div *ngIf="linkedin.invalid && (linkedin.dirty || linkedin.touched)"
 class="alert alert-danger">
@@ -124,13 +124,19 @@ class="alert alert-danger">
 </div>
 
 <div class="form-group">
-  <label for="exampleFormControlFile1"><strong>Attach CV</strong></label>
-  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  <label for="exampleFormControlFile1"  
+ ><strong>Attach CV</strong></label>
+  <input type="file" class="form-control-file" id="exampleFormControlFile1"
+  [(ngModel)]=" person.cv"
+  ngModel id = "cv"
+  name = "cv"
+  #cv = "ngModel">
 </div>
 <strong>Cover Letter</strong><br>
 <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
 ngModel id = "cover" name = "cover" #cover = "ngModel" required minlength="4"
-[(ngModel)]="person.cover">
+[(ngModel)]=" person.cover"
+>
 
 </textarea>
 <div *ngIf="cover.invalid && (cover.dirty || cover.touched)"
@@ -145,5 +151,6 @@ class="alert alert-danger">
 
 </div>
 </form>
+
 </body>
 </html>
