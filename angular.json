@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "application-form"
+  "defaultProject": "application-form",
+  "cli": {
+    "analytics": false
+  }
 }
