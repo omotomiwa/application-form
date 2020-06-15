@@ -146,7 +146,7 @@ class="alert alert-danger">
 </div>
 </div><br><br>
 
-<button type="submit" class="btn btn-primary" (click)="changeState()"  [@changeDivSize]=currentState>Submit</button>
+<button type="submit" class="btn btn-primary" (click)="changeState();openSnackBar()"  [@changeDivSize]=currentState>Submit</button>
 
 
 </div>

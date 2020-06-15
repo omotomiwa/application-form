@@ -3,6 +3,7 @@ import {trigger,style,transition,animate,keyframes,query,stagger,state,} from "@
  import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FormGroup, NgForm} from '@angular/forms';
 import { Subscription } from 'rxjs';
+import {MatSnackBar,MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -50,14 +51,20 @@ export class ApplyComponent implements  AfterViewInit, OnDestroy,OnInit {
 
 
   }
-  
+
   onSubmit(){
     console.log(this.person);
     
     
-  
-    
   }
+  constructor(private _snackBar: MatSnackBar) {}
+
+  openSnackBar() {
+    this._snackBar.open("Form Submitted", "Ok", {
+      duration: 2000,
+    });
+  }
+  
 
  
 

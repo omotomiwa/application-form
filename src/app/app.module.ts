@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    MatSnackBarModule
    
     
     
